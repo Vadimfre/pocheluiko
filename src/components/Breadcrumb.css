@@ -1,0 +1,50 @@
+.breadcrumb-bar {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 0;
+}
+
+.breadcrumb-bar .container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-link {
+  color: #16a34a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.breadcrumb-link:hover {
+  opacity: 0.7;
+}
+
+.breadcrumb-sep {
+  color: #cbd5e1;
+}
+
+.breadcrumb-current {
+  color: #94a3b8;
+}
+
+/* ── Dark theme ── */
+.dark-theme .breadcrumb-bar {
+  background: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .breadcrumb-link {
+  color: var(--green-primary);
+}
+
+.dark-theme .breadcrumb-sep {
+  color: var(--text-tertiary);
+}
+
+.dark-theme .breadcrumb-current {
+  color: var(--text-tertiary);
+}

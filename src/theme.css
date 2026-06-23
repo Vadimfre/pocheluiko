@@ -1,0 +1,1024 @@
+/* =============================================
+   ТЁМНАЯ ТЕМА — полный стиль
+   ============================================= */
+
+.dark-theme {
+  --bg-primary:    #0d1117;
+  --bg-secondary:  #161b22;
+  --bg-tertiary:   #21262d;
+  --bg-card:       #1c2128;
+  --text-primary:  #e6edf3;
+  --text-secondary:#8b949e;
+  --text-tertiary: #6e7681;
+  --border-color:  #30363d;
+  --border-subtle: #21262d;
+  --shadow:        rgba(0, 0, 0, 0.6);
+  --green-primary: #3fb950;
+  --green-secondary:#238636;
+  --green-glow:    rgba(63, 185, 80, 0.18);
+  --green-glow-sm: rgba(63, 185, 80, 0.10);
+}
+
+/* ── Body ── */
+.dark-theme {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ── Smooth transitions ── */
+.dark-theme *,
+.dark-theme *::before,
+.dark-theme *::after {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* ── Header ── */
+.dark-theme .header {
+  background-color: rgba(13, 17, 23, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 0 var(--border-color);
+}
+
+.dark-theme .header.scrolled {
+  background-color: rgba(13, 17, 23, 0.98);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.dark-theme .logo { color: var(--green-primary); }
+
+.dark-theme .nav a,
+.dark-theme .dropdown-trigger {
+  color: var(--text-primary);
+}
+
+.dark-theme .nav a:hover,
+.dark-theme .dropdown-trigger:hover {
+  color: var(--green-primary);
+}
+
+.dark-theme .nav a::after,
+.dark-theme .dropdown-trigger::after {
+  background-color: var(--green-primary);
+}
+
+.dark-theme .dropdown-menu {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+.dark-theme .dropdown-item {
+  color: var(--text-primary);
+  border-left-color: transparent;
+}
+
+.dark-theme .dropdown-item::before {
+  background-color: var(--green-glow-sm);
+}
+
+.dark-theme .dropdown-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--green-primary);
+  border-left-color: var(--green-primary);
+}
+
+.dark-theme .language-switcher {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .language-label { color: var(--text-tertiary); }
+
+.dark-theme .lang-btn { color: var(--text-secondary); }
+
+.dark-theme .lang-btn.active {
+  background-color: var(--green-secondary);
+  color: #fff;
+}
+
+.dark-theme .lang-btn:not(.active):hover {
+  background-color: var(--bg-card);
+}
+
+/* ── Sections base ── */
+.dark-theme section {
+  background-color: var(--bg-primary);
+}
+
+.dark-theme .section-title  { color: var(--green-primary); }
+.dark-theme .section-subtitle { color: var(--text-secondary); }
+
+/* ── About ── */
+.dark-theme .about {
+  background-color: var(--bg-secondary);
+}
+
+.dark-theme .about-mission-title,
+.dark-theme .about-subheading,
+.dark-theme .about-text h3 {
+  color: var(--green-primary);
+}
+
+.dark-theme .about-text p,
+.dark-theme .about-list li {
+  color: var(--text-secondary);
+}
+
+.dark-theme .about-list li::before { color: var(--green-primary); }
+
+.dark-theme .stat-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.dark-theme .stat-item:hover {
+  border-color: var(--green-primary);
+  box-shadow: 0 8px 32px var(--green-glow), 0 4px 16px var(--shadow);
+}
+
+.dark-theme .stat-item::before {
+  background: linear-gradient(90deg, var(--green-secondary), var(--green-primary));
+}
+
+.dark-theme .stat-number { color: var(--green-primary); }
+.dark-theme .stat-label  { color: var(--text-tertiary); }
+.dark-theme .stat-item:hover .stat-label { color: var(--text-secondary); }
+
+/* ── Services ── */
+.dark-theme .services {
+  background-color: var(--bg-primary);
+}
+
+.dark-theme .services::before {
+  background: rgba(13, 17, 23, 0.82);
+}
+
+.dark-theme .service-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.dark-theme .service-card-link:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--green-primary);
+  box-shadow: 0 12px 40px var(--green-glow), 0 4px 16px var(--shadow);
+  transform: translateY(-10px) scale(1.02);
+}
+
+.dark-theme .service-card::before {
+  background: linear-gradient(90deg, transparent, var(--green-glow), transparent);
+}
+
+.dark-theme .service-title {
+  color: var(--green-primary);
+  text-shadow: none;
+}
+
+.dark-theme .service-description {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+.dark-theme .service-cta { color: var(--green-primary); }
+
+.dark-theme .services .section-title {
+  color: var(--green-primary);
+  text-shadow: 0 0 40px var(--green-glow);
+}
+
+.dark-theme .services .section-subtitle {
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+/* ── Reserves Map ── */
+.dark-theme .reserves-map-section {
+  background-color: var(--bg-secondary);
+}
+
+.dark-theme .reserves-cards-wrapper::before {
+  background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
+}
+
+.dark-theme .reserves-cards-wrapper::after {
+  background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
+}
+
+.dark-theme .reserve-card {
+  background-color: #111;
+  border-color: var(--border-color);
+}
+
+.dark-theme .reserve-card.active {
+  border-color: rgba(63, 185, 80, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(63, 185, 80, 0.25),
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .reserve-card.active:hover {
+  box-shadow:
+    0 0 0 1px rgba(63, 185, 80, 0.5),
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.dark-theme .reserve-card-content h4 { color: #fff; }
+.dark-theme .reserve-card-description { color: rgba(255,255,255,0.8); }
+
+.dark-theme .slider-arrow {
+  background-color: var(--green-secondary);
+  box-shadow: 0 4px 20px var(--green-glow);
+}
+
+.dark-theme .slider-arrow:hover {
+  background-color: var(--green-primary);
+  box-shadow: 0 8px 32px var(--green-glow);
+}
+
+/* ── Contact ── */
+.dark-theme .contact {
+  background-color: var(--bg-secondary);
+}
+
+.dark-theme .contact-header .contact-lead { color: var(--text-secondary); }
+
+.dark-theme .contact-info {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 40px var(--shadow);
+}
+
+.dark-theme .contact-info-title  { color: var(--text-tertiary); }
+.dark-theme .contact-info-highlight { color: var(--text-primary); }
+
+.dark-theme .info-item {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .info-item:hover {
+  border-color: rgba(63, 185, 80, 0.4);
+  box-shadow: 0 8px 24px var(--green-glow-sm);
+}
+
+.dark-theme .info-icon {
+  background: var(--green-glow-sm);
+  border-color: rgba(63, 185, 80, 0.35);
+  color: var(--green-primary);
+}
+
+.dark-theme .info-item h4 { color: var(--text-tertiary); }
+.dark-theme .info-item p  { color: var(--text-primary); }
+
+.dark-theme .contact-accent {
+  background: linear-gradient(
+    135deg,
+    rgba(63, 185, 80, 0.35) 0%,
+    rgba(35, 134, 54, 0.25) 100%
+  );
+}
+
+.dark-theme .contact-accent-inner {
+  background: linear-gradient(145deg, #1a3d28 0%, var(--bg-tertiary) 100%);
+  color: var(--text-primary);
+  box-shadow: 0 16px 40px var(--shadow);
+}
+
+.dark-theme .contact-accent-icon {
+  background: var(--green-glow-sm);
+  color: var(--green-primary);
+}
+
+.dark-theme .contact-form {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 40px var(--shadow);
+}
+
+.dark-theme .contact-form-title   { color: var(--text-primary); }
+.dark-theme .contact-form-subtitle { color: var(--text-secondary); }
+
+.dark-theme .form-group label { color: var(--text-primary); }
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .form-group input::placeholder,
+.dark-theme .form-group textarea::placeholder { color: var(--text-tertiary); }
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 3px var(--green-glow-sm);
+  background-color: var(--bg-secondary);
+}
+
+.dark-theme .contact-form .form-success {
+  background: rgba(63, 185, 80, 0.12);
+  color: var(--green-primary);
+  border-color: rgba(63, 185, 80, 0.35);
+}
+
+/* ── Footer ── */
+.dark-theme .footer {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ── Buttons ── */
+.dark-theme .btn-primary {
+  background-color: var(--green-secondary);
+  color: #fff;
+  border-color: var(--green-secondary);
+  box-shadow: 0 4px 16px var(--green-glow);
+}
+
+.dark-theme .btn-primary:hover {
+  background-color: var(--green-primary);
+  border-color: var(--green-primary);
+  box-shadow: 0 6px 24px var(--green-glow);
+}
+
+.dark-theme .btn-secondary {
+  color: var(--green-primary);
+  border-color: var(--green-primary);
+  background-color: transparent;
+}
+
+.dark-theme .btn-secondary:hover {
+  background-color: var(--green-glow-sm);
+  color: var(--green-primary);
+}
+
+/* ── Reserve Detail ── */
+.dark-theme .reserve-detail-page {
+  background-color: var(--bg-primary);
+}
+
+.dark-theme .reserve-detail-content {
+  background-color: var(--bg-secondary);
+}
+
+.dark-theme .reserve-description-section h2,
+.dark-theme .reserve-features h3,
+.dark-theme .reserve-animals h3,
+.dark-theme .reserve-gallery h3,
+.dark-theme .reserve-map-section h2,
+.dark-theme .reserve-additional-info h2 {
+  color: var(--green-primary);
+}
+
+.dark-theme .reserve-description,
+.dark-theme .features-list li,
+.dark-theme .reserve-additional-info p {
+  color: var(--text-secondary);
+}
+
+.dark-theme .animal-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .animal-item:hover {
+  border-color: var(--green-primary);
+  box-shadow: 0 4px 20px var(--green-glow);
+}
+
+.dark-theme .animal-item h4    { color: var(--text-primary); }
+.dark-theme .animal-species    { color: var(--text-tertiary); }
+.dark-theme .animal-description { color: var(--text-secondary); }
+.dark-theme .animal-source {
+  color: var(--text-tertiary);
+  border-top-color: rgba(63, 185, 80, 0.25);
+}
+
+.dark-theme .info-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .info-card-content h4 { color: var(--text-tertiary); }
+.dark-theme .info-card-value       { color: var(--green-primary); }
+.dark-theme .info-card-icon        { color: var(--green-primary); }
+
+.dark-theme .reserve-map-section,
+.dark-theme .reserve-additional-info {
+  background-color: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ── Weather Widget ── */
+.dark-theme .weather-widget {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.dark-theme .weather-title    { color: var(--green-primary); }
+.dark-theme .weather-subtitle { color: var(--green-secondary); }
+
+.dark-theme .weather-day {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .weather-day:hover {
+  border-color: var(--green-primary);
+  box-shadow: 0 4px 16px var(--green-glow);
+}
+
+.dark-theme .weather-day-name    { color: var(--green-primary); }
+.dark-theme .weather-description { color: var(--text-secondary); }
+
+.dark-theme .weather-recommendations {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--green-primary);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--green-primary);
+}
+
+.dark-theme .recommendations-title { color: var(--green-primary); }
+
+.dark-theme .best-days li {
+  background-color: rgba(63, 185, 80, 0.08);
+  color: var(--green-primary);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.dark-theme .caution-days li {
+  background-color: rgba(234, 88, 12, 0.08);
+  color: #f97316;
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.dark-theme .general-advice li {
+  background-color: rgba(63, 185, 80, 0.06);
+  color: var(--text-secondary);
+}
+
+/* ── Account ── */
+.dark-theme .account-page {
+  background-color: var(--bg-primary);
+}
+
+.dark-theme .account-card,
+.dark-theme .favorites-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.dark-theme .account-title    { color: var(--text-primary); }
+.dark-theme .account-subtitle { color: var(--text-secondary); }
+.dark-theme .account-block-title { color: var(--text-secondary); }
+
+.dark-theme .account-edit-profile-link {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .account-edit-profile-link:hover {
+  border-color: rgba(63, 185, 80, 0.45);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.dark-theme .account-edit-profile-link-title { color: var(--text-primary); }
+.dark-theme .account-edit-profile-link-desc  { color: var(--text-tertiary); }
+
+.dark-theme .account-user-header {
+  background: linear-gradient(135deg,
+    rgba(63, 185, 80, 0.08) 0%,
+    rgba(35, 134, 54, 0.12) 100%);
+  border: 1px solid rgba(63, 185, 80, 0.15);
+  border-radius: 12px;
+}
+
+.dark-theme .account-tabs {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .account-tabs .tab { color: var(--text-secondary); }
+
+.dark-theme .account-tabs .tab.active {
+  background-color: var(--green-secondary);
+  color: #fff;
+}
+
+.dark-theme .account-form .form-group label { color: var(--text-primary); }
+
+.dark-theme .account-form .form-group input,
+.dark-theme .account-inline-input {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .account-form .form-group input:focus,
+.dark-theme .account-inline-input:focus {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 3px var(--green-glow-sm);
+}
+
+.dark-theme .account-details {
+  border-color: var(--border-color);
+  background-color: var(--bg-tertiary);
+}
+
+.dark-theme .account-details summary { color: var(--green-primary); }
+
+.dark-theme .favorites-name { color: var(--green-primary); }
+.dark-theme .favorites-area { color: var(--text-tertiary); }
+
+.dark-theme .favorites-item {
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .favorites-main-btn.active {
+  background-color: var(--green-secondary);
+  border-color: transparent;
+  color: #fff;
+}
+
+.dark-theme .btn-remove {
+  border-color: var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+.dark-theme .btn-remove:hover {
+  background: rgba(248, 81, 73, 0.12);
+  color: #f85149;
+  border-color: rgba(248, 81, 73, 0.3);
+}
+
+.dark-theme .account-feedback-item,
+.dark-theme .account-booking-item {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .account-feedback-message { color: var(--text-secondary); }
+.dark-theme .account-feedback-date    { color: var(--text-tertiary); }
+.dark-theme .account-booking-cabin    { color: var(--text-tertiary); }
+.dark-theme .account-booking-dates    { color: var(--text-tertiary); }
+.dark-theme .account-empty            { color: var(--text-tertiary); }
+
+.dark-theme .account-message { color: var(--green-primary); }
+
+.dark-theme .account-error {
+  background-color: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+  border: 1px solid rgba(248, 81, 73, 0.2);
+}
+
+/* ── Activity History ── */
+.dark-theme .account-activity-item {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .activity-title   { color: var(--green-primary); }
+.dark-theme .activity-meta    { color: var(--text-tertiary); }
+
+.dark-theme .account-activity-list {
+  scrollbar-color: var(--border-color) transparent;
+}
+
+/* ── Notifications ── */
+.dark-theme .account-notification-item {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid transparent;
+}
+
+.dark-theme .account-notification-item.unread {
+  background-color: rgba(63, 185, 80, 0.06);
+  border-left-color: var(--green-primary);
+}
+
+.dark-theme .notification-title   { color: var(--green-primary); }
+.dark-theme .notification-message { color: var(--text-secondary); }
+.dark-theme .notification-date    { color: var(--text-tertiary); }
+
+/* ── Privacy Settings ── */
+.dark-theme .privacy-option {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.dark-theme .privacy-option span { color: var(--text-primary); }
+
+/* ── Ecology Page ── */
+.dark-theme .ecology-page    { background-color: var(--bg-primary); }
+
+.dark-theme .ecology-hero {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dark-theme .ecology-content { background-color: var(--bg-secondary); }
+
+.dark-theme .ecology-sidebar {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.dark-theme .ecology-main-content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.dark-theme .ecology-sidebar h3 { color: var(--green-primary); }
+
+.dark-theme .topic-button {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: transparent;
+}
+
+.dark-theme .topic-button:hover {
+  background-color: var(--bg-card);
+  border-color: var(--green-primary);
+}
+
+.dark-theme .topic-button.active {
+  background-color: var(--green-secondary);
+  border-color: var(--green-secondary);
+  color: #fff;
+}
+
+.dark-theme .ecology-main-content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.dark-theme .ecology-sidebar::-webkit-scrollbar-thumb,
+.dark-theme .ecology-main-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+.dark-theme .topic-header { border-bottom-color: var(--green-primary); }
+.dark-theme .topic-header h2 { color: var(--green-primary); }
+.dark-theme .topic-paragraph { color: var(--text-secondary); }
+
+.dark-theme .ecology-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.dark-theme .ecology-section h3 { color: var(--green-primary); }
+.dark-theme .ecology-section p  { color: var(--text-secondary); }
+
+/* ── Activity Detail ── */
+.dark-theme .activity-page { background-color: var(--bg-primary); }
+
+.dark-theme .activity-text {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .activity-section-heading { color: var(--green-primary); }
+.dark-theme .activity-text p          { color: var(--text-secondary); }
+
+/* ── Profile Page ── */
+.dark-theme .profile-page { background-color: var(--bg-primary); }
+
+.dark-theme .profile-back {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.dark-theme .profile-back:hover {
+  color: var(--green-primary);
+  border-color: rgba(63, 185, 80, 0.4);
+}
+
+.dark-theme .profile-title { color: var(--text-primary); }
+.dark-theme .profile-lead   { color: var(--text-secondary); }
+
+.dark-theme .profile-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 48px var(--shadow);
+}
+
+.dark-theme .profile-avatar-section {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .avatar-image {
+  border-color: var(--bg-secondary);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.dark-theme .avatar-placeholder {
+  border-color: var(--bg-secondary);
+}
+
+.dark-theme .avatar-hint { color: var(--text-tertiary); }
+
+.dark-theme .profile-form .form-group label { color: var(--text-primary); }
+
+.dark-theme .profile-form .form-group input {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .profile-form .form-group input:hover:not(:disabled) {
+  border-color: var(--border-color);
+  background: var(--bg-card);
+}
+
+.dark-theme .profile-form .form-group input:focus:not(:disabled) {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 3px var(--green-glow-sm);
+  background: var(--bg-card);
+}
+
+.dark-theme .field-hint { color: var(--text-tertiary); }
+
+.dark-theme .profile-message--success {
+  background: rgba(63, 185, 80, 0.12);
+  color: var(--green-primary);
+  border-color: rgba(63, 185, 80, 0.3);
+}
+
+.dark-theme .profile-message--error {
+  background: rgba(248, 81, 73, 0.12);
+  color: #f85149;
+  border-color: rgba(248, 81, 73, 0.28);
+}
+
+.dark-theme .input-disabled {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-tertiary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* ── Reserve Booking ── */
+.dark-theme .reserve-booking-page { background-color: var(--bg-primary); }
+
+.dark-theme .reserve-booking-content { background-color: var(--bg-secondary); }
+
+.dark-theme .cabin-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .cabin-card:hover {
+  border-color: var(--green-primary);
+  box-shadow: 0 4px 20px var(--green-glow);
+}
+
+.dark-theme .cabin-card.selected {
+  border-color: var(--green-primary);
+  background-color: rgba(63, 185, 80, 0.06);
+  box-shadow: 0 0 0 1px var(--green-primary), 0 4px 20px var(--green-glow);
+}
+
+.dark-theme .cabin-description { color: var(--text-secondary); }
+.dark-theme .cabin-info        { color: var(--text-tertiary); }
+
+.dark-theme .booking-form-wrapper h2,
+.dark-theme .booking-cabins h2 { color: var(--green-primary); }
+
+.dark-theme .booking-note { color: var(--text-secondary); }
+
+.dark-theme .booking-form input,
+.dark-theme .booking-form select {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .booking-form input:focus {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 3px var(--green-glow-sm);
+}
+
+.dark-theme .booking-alert.error {
+  background-color: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+  border: 1px solid rgba(248, 81, 73, 0.2);
+}
+
+.dark-theme .booking-alert.success {
+  background-color: rgba(63, 185, 80, 0.1);
+  color: var(--green-primary);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+/* ── Contact page ── */
+.dark-theme .contact-page { background-color: var(--bg-primary); }
+
+/* ── Scrollbar ── */
+.dark-theme ::-webkit-scrollbar { width: 8px; height: 8px; }
+.dark-theme ::-webkit-scrollbar-track { background: var(--bg-primary); }
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  border: 2px solid var(--bg-primary);
+}
+.dark-theme ::-webkit-scrollbar-thumb:hover { background: var(--border-color); }
+
+.accessibility-mode {
+  font-size: 118% !important;
+  letter-spacing: 0.03em;
+}
+
+/* Крупный шрифт везде */
+.accessibility-mode *:not(i):not(span.logo-icon) {
+  font-size: inherit;
+  line-height: 1.8 !important;
+}
+
+/* Высококонтрастный фон и текст */
+.accessibility-mode body,
+.accessibility-mode .account-page,
+.accessibility-mode .reserve-detail-page,
+.accessibility-mode .ecology-page,
+.accessibility-mode .reserve-booking-page {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Все тексты — чёрные на белом */
+.accessibility-mode p,
+.accessibility-mode span,
+.accessibility-mode li,
+.accessibility-mode label,
+.accessibility-mode h1,
+.accessibility-mode h2,
+.accessibility-mode h3,
+.accessibility-mode h4,
+.accessibility-mode h5 {
+  color: #000 !important;
+}
+
+/* Ссылки — синие подчёркнутые */
+.accessibility-mode a {
+  color: #0000cc !important;
+  text-decoration: underline !important;
+}
+
+.accessibility-mode a:hover {
+  color: #0000ff !important;
+}
+
+/* Кнопки — высококонтрастные */
+.accessibility-mode .btn-primary {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+  font-size: 1rem !important;
+  padding: 12px 24px !important;
+}
+
+.accessibility-mode .btn-secondary {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  font-size: 1rem !important;
+  padding: 12px 24px !important;
+}
+
+.accessibility-mode .btn-primary:hover,
+.accessibility-mode .btn-secondary:hover {
+  outline: 3px solid #0000cc !important;
+  outline-offset: 2px !important;
+}
+
+/* Инпуты */
+.accessibility-mode input,
+.accessibility-mode textarea,
+.accessibility-mode select {
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 1rem !important;
+}
+
+.accessibility-mode input:focus,
+.accessibility-mode textarea:focus,
+.accessibility-mode select:focus {
+  outline: 3px solid #0000cc !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* Карточки */
+.accessibility-mode .account-card,
+.accessibility-mode .favorites-card,
+.accessibility-mode .service-card,
+.accessibility-mode .reserve-card,
+.accessibility-mode .info-card,
+.accessibility-mode .animal-item,
+.accessibility-mode .account-feedback-item,
+.accessibility-mode .account-booking-item,
+.accessibility-mode .account-excursion-item,
+.accessibility-mode .account-activity-item,
+.accessibility-mode .account-notification-item {
+  background-color: #fff !important;
+  border: 2px solid #000 !important;
+  color: #000 !important;
+}
+
+/* Навигация */
+.accessibility-mode .header {
+  background-color: #fff !important;
+  border-bottom: 3px solid #000 !important;
+}
+
+.accessibility-mode .nav a,
+.accessibility-mode .dropdown-trigger {
+  color: #000 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.accessibility-mode .logo {
+  color: #000 !important;
+  font-size: 1.3rem !important;
+}
+
+/* Секции */
+.accessibility-mode section,
+.accessibility-mode .about,
+.accessibility-mode .services,
+.accessibility-mode .reserves-map-section,
+.accessibility-mode .contact,
+.accessibility-mode .footer {
+  background-color: #fff !important;
+}
+
+/* Заголовки секций */
+.accessibility-mode .section-title {
+  color: #000 !important;
+  font-size: 2rem !important;
+}
+
+.accessibility-mode .section-subtitle {
+  color: #333 !important;
+}
+
+/* Карточки заповедников — текст поверх фото */
+.accessibility-mode .reserve-card-content h4 {
+  color: #fff !important;
+  text-shadow: 0 0 8px #000, 0 0 16px #000 !important;
+  font-size: 1.6rem !important;
+}
+
+.accessibility-mode .reserve-card-description {
+  color: #fff !important;
+  text-shadow: 0 0 6px #000 !important;
+}
+
+.accessibility-mode .reserve-tag {
+  background: rgba(0,0,0,0.7) !important;
+  color: #fff !important;
+  border-color: #fff !important;
+  font-size: 0.9rem !important;
+}
+
+/* Фокус — жёлтая обводка для клавиатурной навигации */
+.accessibility-mode *:focus {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+}
+
+/* Курсор — крупный */
+.accessibility-mode {
+  cursor: default;
+}
+
+/* Убираем анимации */
+.accessibility-mode *,
+.accessibility-mode *::before,
+.accessibility-mode *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.2s !important;
+}

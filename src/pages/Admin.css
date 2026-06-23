@@ -1,0 +1,665 @@
+.admin-page {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.admin-title {
+  font-size: 1.8rem;
+  color: #0f172a;
+  margin: 0;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  background: #e5e7eb;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  width: fit-content;
+}
+
+.admin-tab {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-tab.active {
+  background: #fff;
+  color: #166534;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.admin-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.admin-section h2 {
+  font-size: 1.3rem;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.admin-empty {
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+/* ── Feedback ── */
+.admin-feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-feedback-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  border-left: 4px solid #d1d5db;
+}
+
+.admin-feedback-item.pending {
+  border-left-color: #f59e0b;
+}
+
+.admin-feedback-item.replied {
+  border-left-color: #16a34a;
+}
+
+.admin-feedback-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.admin-feedback-author {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.admin-feedback-email {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.admin-feedback-date {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.admin-feedback-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-replied {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.admin-feedback-message {
+  color: #374151;
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.admin-feedback-reply {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.admin-reply-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #166534;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.admin-feedback-reply p {
+  margin: 0 0 4px;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.admin-reply-form {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.admin-reply-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  background: #fff;
+  color: #111827;
+}
+
+.admin-reply-input:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.15);
+}
+
+.admin-success {
+  font-size: 0.85rem;
+  color: #16a34a;
+  font-weight: 500;
+  align-self: center;
+}
+
+/* ── Reserves ── */
+.admin-reserves-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+
+.admin-reserves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-reserve-btn {
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: #374151;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-reserve-btn:hover {
+  border-color: #16a34a;
+  color: #166534;
+}
+
+.admin-reserve-btn.active {
+  background: #f0fdf4;
+  border-color: #16a34a;
+  color: #166534;
+  font-weight: 600;
+}
+
+.admin-reserve-editor .form-group {
+  margin-bottom: 16px;
+}
+
+.admin-reserve-editor label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.admin-reserve-editor input,
+.admin-reserve-editor textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #f9fafb;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+.admin-reserve-editor input:focus,
+.admin-reserve-editor textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.15);
+}
+
+.admin-editor-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── Users ── */
+.admin-users-table {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-users-header,
+.admin-users-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 1.5fr 100px 1fr;
+  gap: 12px;
+  padding: 10px 16px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.admin-users-header {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-users-row {
+  border-top: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.admin-users-row:hover {
+  background: #f9fafb;
+}
+
+.role-admin {
+  color: #166534;
+  font-weight: 600;
+  background: #dcfce7;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.role-user {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* ── Dark theme ── */
+.dark-theme .admin-page {
+  background-color: var(--bg-primary);
+}
+
+.dark-theme .admin-title { color: var(--text-primary); }
+
+.dark-theme .admin-tabs {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .admin-tab { color: var(--text-secondary); }
+
+.dark-theme .admin-tab.active {
+  background: var(--bg-secondary);
+  color: var(--green-primary);
+}
+
+.dark-theme .admin-section {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .admin-section h2 { color: var(--text-primary); }
+
+.dark-theme .admin-feedback-item {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .admin-feedback-item.pending { border-left-color: #f59e0b; }
+.dark-theme .admin-feedback-item.replied { border-left-color: var(--green-primary); }
+
+.dark-theme .admin-feedback-author { color: var(--text-primary); }
+.dark-theme .admin-feedback-message { color: var(--text-secondary); }
+
+.dark-theme .admin-feedback-reply {
+  background: rgba(63,185,80,0.06);
+  border-color: rgba(63,185,80,0.2);
+}
+
+.dark-theme .admin-feedback-reply p { color: var(--text-secondary); }
+
+.dark-theme .admin-reply-input {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .admin-reply-input:focus {
+  border-color: var(--green-primary);
+}
+
+.dark-theme .admin-reserve-btn {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.dark-theme .admin-reserve-btn.active {
+  background: rgba(63,185,80,0.08);
+  border-color: var(--green-primary);
+  color: var(--green-primary);
+}
+
+.dark-theme .admin-reserve-editor label { color: var(--text-secondary); }
+
+.dark-theme .admin-reserve-editor input,
+.dark-theme .admin-reserve-editor textarea {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .admin-users-table { border-color: var(--border-color); }
+
+.dark-theme .admin-users-header {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+.dark-theme .admin-users-row {
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.dark-theme .admin-users-row:hover { background: var(--bg-tertiary); }
+
+/* ── Excursions ── */
+.admin-exc-form {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-exc-form h3,
+.admin-exc-list h3 { font-size: 1rem; color: #374151; margin-bottom: 12px; }
+
+.admin-exc-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.admin-exc-fields input,
+.admin-exc-fields select {
+  flex: 1;
+  min-width: 140px;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  background: #fff;
+  color: #111827;
+}
+
+.admin-exc-desc {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: #fff;
+  color: #111827;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.admin-exc-list { margin-top: 8px; }
+
+.admin-exc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+}
+
+.admin-exc-info { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.admin-exc-info strong { font-size: 0.95rem; color: #0f172a; }
+.admin-exc-reserve { font-size: 0.82rem; color: #16a34a; font-weight: 500; }
+.admin-exc-meta { font-size: 0.8rem; color: #6b7280; }
+
+.dark-theme .admin-exc-form { background: var(--bg-tertiary); border-color: var(--border-color); }
+.dark-theme .admin-exc-form h3,
+.dark-theme .admin-exc-list h3 { color: var(--text-secondary); }
+.dark-theme .admin-exc-fields input,
+.dark-theme .admin-exc-fields select,
+.dark-theme .admin-exc-desc { background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary); }
+.dark-theme .admin-exc-item { background: var(--bg-tertiary); border-color: var(--border-color); }
+.dark-theme .admin-exc-info strong { color: var(--text-primary); }
+.dark-theme .admin-exc-reserve { color: var(--green-primary); }
+.dark-theme .admin-exc-meta { color: var(--text-tertiary); }
+
+/* ── Cabins & Bookings ── */
+.admin-item-editing {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.dark-theme .admin-item-editing {
+  border-color: var(--green-primary);
+  background: rgba(63, 185, 80, 0.06);
+}
+
+.admin-bookings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-bookings-header h3 { margin: 0; }
+
+.admin-bookings-search {
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+  padding: 7px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  background: #fff;
+  color: #111827;
+}
+
+.admin-bookings-search:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.15);
+}
+
+.admin-booking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+}
+
+.dark-theme .admin-bookings-search {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .admin-booking-item {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+/* ── Ecology ── */
+.admin-eco-textareas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-eco-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.admin-eco-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0 !important;
+}
+
+.dark-theme .admin-eco-label { color: var(--text-tertiary); }
+
+@media (max-width: 768px) {
+  .admin-eco-textareas { grid-template-columns: 1fr; }
+}
+
+/* ── Eco icon picker ── */
+.admin-eco-icon-picker { margin-bottom: 10px; }
+
+.admin-eco-icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.admin-eco-icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.admin-eco-icon-btn:hover {
+  border-color: #16a34a;
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.admin-eco-icon-btn.selected {
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
+}
+
+.dark-theme .admin-eco-icon-btn {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-tertiary);
+}
+
+.dark-theme .admin-eco-icon-btn:hover {
+  border-color: var(--green-primary);
+  color: var(--green-primary);
+  background: var(--bg-tertiary);
+}
+
+.dark-theme .admin-eco-icon-btn.selected {
+  background: var(--green-secondary);
+  border-color: var(--green-secondary);
+  color: #fff;
+}
+
+.admin-image-upload {
+  margin: 12px 0;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px dashed #d1d5db;
+}
+
+.admin-image-upload label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.admin-image-upload input[type="file"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+}
+
+.admin-image-preview {
+  margin-top: 12px;
+}
+
+.admin-image-preview img {
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.admin-loading {
+  color: #6b7280;
+  font-size: 13px;
+  margin-left: 8px;
+}

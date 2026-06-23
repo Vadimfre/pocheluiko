@@ -1,0 +1,319 @@
+.reserve-booking-page {
+  background-color: #f3f4f6;
+  min-height: 100vh;
+}
+
+.reserve-booking-hero {
+  position: relative;
+}
+
+.reserve-booking-hero-image {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.reserve-booking-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6), transparent);
+}
+
+.reserve-booking-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 90px;
+  color: #fff;
+  max-width: 700px;
+}
+
+.reserve-booking-hero-content h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.reserve-booking-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.reserve-booking-content {
+  padding: 40px 0 60px;
+}
+
+.reserve-booking-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+}
+
+.booking-cabins h2,
+.booking-form-wrapper h2 {
+  margin-bottom: 16px;
+}
+
+.cabins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cabin-card {
+  border-radius: 12px;
+  border: 1px solid #dde4ee;
+  padding: 16px 18px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.cabin-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.cabin-description {
+  margin: 0 0 10px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.cabin-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.cabin-card.selected {
+  border-color: #16a34a;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.15);
+  transform: translateY(-1px);
+}
+
+.booking-form-wrapper {
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 20px 22px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.dark-theme .booking-form-wrapper {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.dark-theme .booking-form-wrapper h2 { color: var(--green-primary); }
+.dark-theme .booking-cabins h2       { color: var(--green-primary); }
+.booking-note {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.booking-alert {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.booking-alert.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.booking-alert.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.form-group input {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.1);
+}
+
+.booking-submit {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.65);
+  color: #e5e7eb;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+@media (max-width: 960px) {
+  .reserve-booking-hero-image {
+    height: 220px;
+  }
+
+  .reserve-booking-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .reserve-booking-hero-content h1 {
+    font-size: 26px;
+  }
+
+  .reserve-booking-subtitle {
+    font-size: 16px;
+  }
+
+  .booking-form-wrapper {
+    padding: 16px;
+  }
+}
+
+
+/* Auth required block */
+.auth-required-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 20px;
+  gap: 16px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.auth-required-icon {
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-required-text {
+  font-size: 0.95rem;
+  color: #6b7280;
+  max-width: 280px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.dark-theme .auth-required-block {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .auth-required-icon { color: var(--green-primary); }
+.dark-theme .auth-required-text  { color: var(--text-secondary); }
+
+/* Cabin details section */
+.cabin-details {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.cabin-image {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cabin-image img {
+  width: 100%;
+  height: 250px;
+  display: block;
+  object-fit: cover;
+}
+
+.cabin-details h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.cabin-detail-section {
+  margin-bottom: 16px;
+}
+
+.cabin-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.cabin-detail-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.cabin-detail-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* Dark theme */
+.dark-theme .cabin-details {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .cabin-details h3 {
+  color: var(--text-primary);
+}
+
+.dark-theme .cabin-detail-section h4 {
+  color: var(--text-secondary);
+}
+
+.dark-theme .cabin-detail-section p {
+  color: var(--text-tertiary);
+}

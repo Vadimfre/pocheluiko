@@ -1,0 +1,117 @@
+.exc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.exc-card-header h3 { margin: 0; font-size: 1rem; }
+
+.exc-card-badges { display: flex; gap: 6px; flex-shrink: 0; }
+
+.exc-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.badge-reg  { background: #dcfce7; color: #166534; }
+.badge-full { background: #fee2e2; color: #991b1b; }
+
+.exc-meta { flex-direction: column; gap: 4px; }
+
+.exc-meta span,
+.exc-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.exc-guide {
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.exc-full { opacity: 0.6; cursor: default; }
+
+.exc-registered-block {
+  padding: 20px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.exc-registered-text {
+  font-size: 0.95rem;
+  color: #166534;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+/* Dark theme */
+.dark-theme .exc-registered-block {
+  background: rgba(63, 185, 80, 0.06);
+  border-color: rgba(63, 185, 80, 0.2);
+}
+
+.dark-theme .exc-registered-text { color: var(--green-primary); }
+.dark-theme .exc-guide { color: var(--text-tertiary); }
+
+/* Excursion details section */
+.excursion-details {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.excursion-details h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.excursion-detail-section {
+  margin-bottom: 16px;
+}
+
+.excursion-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.excursion-detail-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.excursion-detail-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* Dark theme */
+.dark-theme .excursion-details {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .excursion-details h3 {
+  color: var(--text-primary);
+}
+
+.dark-theme .excursion-detail-section h4 {
+  color: var(--text-secondary);
+}
+
+.dark-theme .excursion-detail-section p {
+  color: var(--text-tertiary);
+}
