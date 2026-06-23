@@ -442,20 +442,33 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             reserve_id INTEGER NOT NULL,
             name TEXT NOT NULL,
+            name_en TEXT,
             description TEXT,
+            description_en TEXT,
             capacity INTEGER,
             price_per_night REAL,
             source_url TEXT,
+            amenities TEXT,
+            amenities_en TEXT,
+            details TEXT,
             image TEXT
         )
         """
     )
 
     cur.execute("PRAGMA table_info(cabins)")
-    cabin_columns = [column[1] for column in cur.fetchall()]
-    if 'image' not in cabin_columns:
-        cur.execute("ALTER TABLE cabins ADD COLUMN image TEXT")
-        print("✓ Добавлена колонка 'image' в таблицу cabins")
+    cabin_columns = {column[1] for column in cur.fetchall()}
+    for col, col_type in {
+        "name_en": "TEXT",
+        "description_en": "TEXT",
+        "amenities": "TEXT",
+        "amenities_en": "TEXT",
+        "details": "TEXT",
+        "image": "TEXT",
+    }.items():
+        if col not in cabin_columns:
+            cur.execute(f"ALTER TABLE cabins ADD COLUMN {col} {col_type}")
+            print(f"✓ Добавлена колонка '{col}' в таблицу cabins")
 
     # Таблица бронирований домиков
     cur.execute(
