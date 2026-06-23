@@ -378,6 +378,34 @@ def seed_cabins_from_web(cur: sqlite3.Cursor) -> None:
                 ),
             )
 
+def seed_excursions(cur: sqlite3.Cursor) -> None:
+    """Примеры экскурсий на ближайшие даты."""
+    now = datetime.utcnow().isoformat()
+    sample = [
+        (1, "Пешая прогулка по Беловежской пуще", "Маршрут по древним лесам и вековым дубам.",
+         "Иван Петров", "2026-06-28", "10:00", "3 часа", 15, 25.0),
+        (1, "Экскурсия к зубрам", "Посещение вольеров и рассказ о программе восстановления зубров.",
+         "Мария Козлова", "2026-07-05", "14:00", "2 часа", 20, 15.0),
+        (2, "Лосиная тропа", "Наблюдение за дикой природой Березинского заповедника.",
+         "Алексей Сidorovich", "2026-07-08", "09:00", "4 часа", 12, 30.0),
+        (3, "По болотам Припятского парка", "Экскурсия по уникальным болотным экосистемам.",
+         "Елена Marchuk", "2026-07-12", "11:00", "3 часа", 18, 20.0),
+        (4, "Озеро Нарочь: природные тропы", "Прогулка вдоль берега и наблюдение за птицами.",
+         "Дмитрий Volkov", "2026-07-15", "08:30", "2.5 часа", 16, 18.0),
+        (5, "Браславские озёра", "Водная экскурсия и знакомство с ландшафтом парка.",
+         "Ольга Kravets", "2026-07-20", "10:00", "3 часа", 14, 22.0),
+    ]
+    for row in sample:
+        cur.execute(
+            """
+            INSERT INTO excursions (
+                reserve_id, title, description, guide, date, time,
+                duration, max_participants, price, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (*row, now),
+        )
+
 def seed_ecology_topics(cur):
     """Заполнить таблицу тем экологии начальными данными."""
     topics = [
@@ -482,10 +510,26 @@ def init_db():
             start_date TEXT NOT NULL,
             end_date TEXT NOT NULL,
             guests INTEGER NOT NULL,
-            created_at TEXT NOT NULL
+            created_at TEXT NOT NULL,
+            user_id INTEGER
         )
         """
     )
+
+    cur.execute("PRAGMA table_info(bookings)")
+    booking_columns = {column[1] for column in cur.fetchall()}
+    if "user_id" not in booking_columns:
+        cur.execute("ALTER TABLE bookings ADD COLUMN user_id INTEGER")
+        print("✓ Добавлена колонка 'user_id' в таблицу bookings")
+        cur.execute(
+            """
+            UPDATE bookings
+            SET user_id = (
+                SELECT id FROM users WHERE LOWER(users.email) = LOWER(bookings.guest_email) LIMIT 1
+            )
+            WHERE user_id IS NULL
+            """
+        )
 
     # Таблица пользователей
     cur.execute(
@@ -618,6 +662,22 @@ def init_db():
         """
     )
 
+    cur.execute("PRAGMA table_info(excursions)")
+    excursion_columns = {column[1] for column in cur.fetchall()}
+    for col, col_type in {
+        "what_to_expect": "TEXT",
+        "route": "TEXT",
+        "image": "TEXT",
+        "title_en": "TEXT",
+        "description_en": "TEXT",
+        "guide_en": "TEXT",
+        "what_to_expect_en": "TEXT",
+        "route_en": "TEXT",
+    }.items():
+        if col not in excursion_columns:
+            cur.execute(f"ALTER TABLE excursions ADD COLUMN {col} {col_type}")
+            print(f"✓ Добавлена колонка '{col}' в таблицу excursions")
+
     # Таблица записей на экскурсии
     cur.execute(
         """
@@ -696,6 +756,11 @@ def init_db():
     cabins_count = cur.fetchone()["cnt"]
     if cabins_count == 0:
         seed_cabins_from_web(cur)
+
+    cur.execute("SELECT COUNT(*) AS cnt FROM excursions")
+    if cur.fetchone()["cnt"] == 0:
+        seed_excursions(cur)
+        print("✓ Примеры экскурсий загружены")
 
     conn.commit()
     conn.close()
@@ -1216,6 +1281,17 @@ def create_booking(reserve_id):
     except (TypeError, ValueError):
         return jsonify({"error": "Поле 'guests' должно быть числом"}), 400
 
+    guest_email = (data.get("guest_email") or "").strip().lower()
+    user_id = data.get("user_id")
+    if not user_id:
+        conn_lookup = get_db_connection()
+        cur_lookup = conn_lookup.cursor()
+        cur_lookup.execute("SELECT id FROM users WHERE email = ?", (guest_email,))
+        user_row = cur_lookup.fetchone()
+        conn_lookup.close()
+        if user_row:
+            user_id = user_row["id"]
+
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute(
@@ -1228,18 +1304,20 @@ def create_booking(reserve_id):
             start_date,
             end_date,
             guests,
-            created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            created_at,
+            user_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             reserve_id,
             data.get("cabin_name"),
             data.get("guest_name"),
-            data.get("guest_email"),
+            guest_email,
             data.get("start_date"),
             data.get("end_date"),
             guests,
             datetime.utcnow().isoformat(),
+            user_id,
         ),
     )
     conn.commit()
@@ -1622,11 +1700,13 @@ def get_user_bookings(user_id):
     if not row:
         conn.close()
         return jsonify([])
-    email = row["email"]
+    email = row["email"].strip().lower()
     cur.execute(
         """SELECT id, reserve_id, cabin_name, guest_name, start_date, end_date, guests, created_at
-           FROM bookings WHERE guest_email = ? ORDER BY created_at DESC""",
-        (email,),
+           FROM bookings
+           WHERE user_id = ? OR LOWER(guest_email) = ?
+           ORDER BY created_at DESC""",
+        (user_id, email),
     )
     rows = cur.fetchall()
     conn.close()
@@ -1657,7 +1737,10 @@ def clear_user_bookings(user_id):
     if not row:
         conn.close()
         return jsonify({"error": "Пользователь не найден"}), 404
-    cur.execute("DELETE FROM bookings WHERE guest_email = ?", (row["email"],))
+    cur.execute(
+        "DELETE FROM bookings WHERE user_id = ? OR LOWER(guest_email) = LOWER(?)",
+        (user_id, row["email"]),
+    )
     conn.commit()
     conn.close()
     return jsonify({"status": "ok"}), 200
@@ -2290,6 +2373,12 @@ def register_excursion(excursion_id):
     conn = get_db_connection()
     cur = conn.cursor()
 
+    if not user_id:
+        cur.execute("SELECT id FROM users WHERE email = ?", (guest_email,))
+        user_row = cur.fetchone()
+        if user_row:
+            user_id = user_row["id"]
+
     cur.execute("SELECT * FROM excursions WHERE id = ?", (excursion_id,))
     exc = cur.fetchone()
     if not exc:
@@ -2354,17 +2443,16 @@ def get_user_excursions(user_id):
     if not row:
         conn.close()
         return jsonify([])
-    email = row["email"]
+    email = row["email"].strip().lower()
     cur.execute("""
         SELECT r.id, r.guests, r.created_at,
                e.id AS excursion_id, e.title, e.date, e.time, e.duration,
-               e.guide, e.price, e.reserve_id,
-               (SELECT name FROM users WHERE id = 0) AS reserve_name
+               e.guide, e.price, e.reserve_id
         FROM excursion_registrations r
         JOIN excursions e ON r.excursion_id = e.id
-        WHERE r.guest_email = ?
+        WHERE r.user_id = ? OR LOWER(r.guest_email) = ?
         ORDER BY e.date ASC
-    """, (email,))
+    """, (user_id, email))
     rows = cur.fetchall()
     conn.close()
     reserves_by_id = {r["id"]: r["name"] for r in RESERVES_DATA}
