@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Account.css';
 import { useLanguage } from '../LanguageContext';
 import AvatarDisplay from '../components/AvatarDisplay';
@@ -11,7 +11,6 @@ const LOCAL_STORAGE_KEY = 'ecology_user';
 
 const Account = () => {
   const { language } = useLanguage();
-  const location = useLocation();
   const [user, setUser] = useState(null);
   const [mode, setMode] = useState('login');
   const [authData, setAuthData] = useState({ name: '', email: '', password: '' });
@@ -81,52 +80,6 @@ const Account = () => {
     return () => window.removeEventListener('focus', onFocus);
   }, [userId]);
 
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const oauthCode = params.get('oauth_code');
-    const oauthError = params.get('oauth_error');
-
-    if (oauthError) {
-      setAuthError(
-        t(
-          `Ошибка входа через соцсеть: ${oauthError}`,
-          `Social login error: ${oauthError}`
-        )
-      );
-      window.history.replaceState({}, document.title, location.pathname);
-      return;
-    }
-
-    if (!oauthCode) return;
-
-    const completeOAuth = async () => {
-      try {
-        const res = await fetch(`${API}/api/oauth/result?code=${encodeURIComponent(oauthCode)}`);
-        const data = await res.json();
-        if (!res.ok) {
-          setAuthError(data.error || t('Не удалось завершить OAuth-вход', 'Could not complete OAuth login'));
-          return;
-        }
-
-        setUser(data);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-        setAuthData({ name: '', email: '', password: '' });
-        setAuthError('');
-      } catch {
-        setAuthError(t('Ошибка при получении данных OAuth', 'Failed to fetch OAuth data'));
-      } finally {
-        window.history.replaceState({}, document.title, location.pathname);
-      }
-    };
-
-    completeOAuth();
-  }, [location.pathname, location.search, t]);
-
-  const startOAuth = (provider) => {
-    setAuthError('');
-    window.location.href = `${API}/api/oauth/${provider}/start`;
-  };
 
   const handleAuthChange = (e) => {
     const { name, value } = e.target;
@@ -546,36 +499,6 @@ const Account = () => {
                     {mode === 'register' ? t('Создать аккаунт', 'Create account') : t('Войти', 'Log in')}
                   </button>
                 </form>
-
-                <div className="account-social-divider">
-                  <span>{t('или продолжить через', 'or continue with')}</span>
-                </div>
-
-                <div className="account-social-btns">
-                  <button type="button" className="account-social-btn account-social-btn--google" onClick={() => startOAuth('google')}>
-                    <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
-                      <path d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.4-.4-3.5z" fill="#FFC107"/>
-                      <path d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 16.3 4 9.7 8.4 6.3 14.7z" fill="#FF3D00"/>
-                      <path d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.3 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8H6.3C9.7 35.6 16.3 44 24 44z" fill="#4CAF50"/>
-                      <path d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l6.2 5.2C41.3 35.2 44 30 44 24c0-1.2-.1-2.4-.4-3.5z" fill="#1976D2"/>
-                    </svg>
-                    Google
-                  </button>
-                  <button type="button" className="account-social-btn account-social-btn--vk" onClick={() => startOAuth('vk')}>
-                    <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
-                      <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="#1976D2"/>
-                      <path d="M35.5 28.5c-1.2-1.2-2.6-1.8-3.5-2.1 1.3-.8 3.5-2.5 3.5-5.4 0-3.5-2.8-5.5-6.5-5.5H14v18h5v-6.5h3.5l4 6.5H32l-4.5-7c2.5-.5 8-2 8-8z" fill="white"/>
-                      <path d="M19 19h4.5c1.5 0 2.5.8 2.5 2s-1 2-2.5 2H19v-4z" fill="#1976D2"/>
-                    </svg>
-                    VK
-                  </button>
-                  <button type="button" className="account-social-btn account-social-btn--github" onClick={() => startOAuth('github')}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
-                    </svg>
-                    GitHub
-                  </button>
-                </div>
               </>
             )}
           </section>
