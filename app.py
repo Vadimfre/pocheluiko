@@ -378,8 +378,8 @@ def seed_cabins_from_web(cur: sqlite3.Cursor) -> None:
                 ),
             )
 
-def seed_excursions(cur: sqlite3.Cursor) -> None:
-    """Примеры экскурсий на ближайшие даты."""
+def seed_excursions(cur: sqlite3.Cursor) -> int:
+    """Примеры экскурсий на ближайшие даты (без дублей)."""
     now = datetime.utcnow().isoformat()
     sample = [
         (1, "Пешая прогулка по Беловежской пуще", "Маршрут по древним лесам и вековым дубам.",
@@ -387,15 +387,29 @@ def seed_excursions(cur: sqlite3.Cursor) -> None:
         (1, "Экскурсия к зубрам", "Посещение вольеров и рассказ о программе восстановления зубров.",
          "Мария Козлова", "2026-07-05", "14:00", "2 часа", 20, 15.0),
         (2, "Лосиная тропа", "Наблюдение за дикой природой Березинского заповедника.",
-         "Алексей Сidorovich", "2026-07-08", "09:00", "4 часа", 12, 30.0),
+         "Алексей Sidorovich", "2026-07-08", "09:00", "4 часа", 12, 30.0),
         (3, "По болотам Припятского парка", "Экскурсия по уникальным болотным экосистемам.",
          "Елена Marchuk", "2026-07-12", "11:00", "3 часа", 18, 20.0),
         (4, "Озеро Нарочь: природные тропы", "Прогулка вдоль берега и наблюдение за птицами.",
          "Дмитрий Volkov", "2026-07-15", "08:30", "2.5 часа", 16, 18.0),
         (5, "Браславские озёра", "Водная экскурсия и знакомство с ландшафтом парка.",
          "Ольга Kravets", "2026-07-20", "10:00", "3 часа", 14, 22.0),
+        (6, "Полесская тропа дикой природы", "Прогулка по лесным и болотным экосистемам Полесья.",
+         "Сергей Hlushko", "2026-07-24", "09:30", "3.5 часа", 12, 19.0),
     ]
+    inserted = 0
     for row in sample:
+        reserve_id, title, _description, _guide, date, time, *_ = row
+        cur.execute(
+            """
+            SELECT id FROM excursions
+            WHERE reserve_id = ? AND title = ? AND date = ? AND time = ?
+            LIMIT 1
+            """,
+            (reserve_id, title, date, time),
+        )
+        if cur.fetchone():
+            continue
         cur.execute(
             """
             INSERT INTO excursions (
@@ -405,6 +419,8 @@ def seed_excursions(cur: sqlite3.Cursor) -> None:
             """,
             (*row, now),
         )
+        inserted += 1
+    return inserted
 
 def seed_ecology_topics(cur):
     """Заполнить таблицу тем экологии начальными данными."""
@@ -757,10 +773,9 @@ def init_db():
     if cabins_count == 0:
         seed_cabins_from_web(cur)
 
-    cur.execute("SELECT COUNT(*) AS cnt FROM excursions")
-    if cur.fetchone()["cnt"] == 0:
-        seed_excursions(cur)
-        print("✓ Примеры экскурсий загружены")
+    inserted_excursions = seed_excursions(cur)
+    if inserted_excursions:
+        print(f"✓ Примеры экскурсий загружены: {inserted_excursions}")
 
     conn.commit()
     conn.close()
