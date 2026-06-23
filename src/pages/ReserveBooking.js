@@ -30,7 +30,15 @@ const ReserveBooking = () => {
   useEffect(() => {
     const stored = localStorage.getItem('ecology_user');
     if (stored) {
-      try { setCurrentUser(JSON.parse(stored)); } catch {}
+      try {
+        const user = JSON.parse(stored);
+        setCurrentUser(user);
+        setFormData((prev) => ({
+          ...prev,
+          guest_name: user?.name || prev.guest_name,
+          guest_email: user?.email || prev.guest_email,
+        }));
+      } catch {}
     }
   }, []);
 
@@ -112,6 +120,7 @@ const ReserveBooking = () => {
       await axios.post(`${API}/api/reserves/${id}/bookings`, {
         cabin_name: selectedCabin,
         ...formData,
+        user_id: currentUser?.id || null,
       });
       setSuccessMessage(
         language === 'en'
