@@ -445,10 +445,17 @@ def init_db():
             description TEXT,
             capacity INTEGER,
             price_per_night REAL,
-            source_url TEXT
+            source_url TEXT,
+            image TEXT
         )
         """
     )
+
+    cur.execute("PRAGMA table_info(cabins)")
+    cabin_columns = [column[1] for column in cur.fetchall()]
+    if 'image' not in cabin_columns:
+        cur.execute("ALTER TABLE cabins ADD COLUMN image TEXT")
+        print("✓ Добавлена колонка 'image' в таблицу cabins")
 
     # Таблица бронирований домиков
     cur.execute(
