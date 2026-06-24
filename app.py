@@ -55,8 +55,12 @@ def allowed_file(filename):
 
 
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
+    # Better concurrent write handling for production-like workloads.
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    conn.execute("PRAGMA busy_timeout=30000")
     return conn
 
 
@@ -2796,5 +2800,5 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))
     # При старте приложения убедимся, что база инициализирована
     init_db()
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=False, host='0.0.0.0', port=port, use_reloader=False)
 
